@@ -1,0 +1,8 @@
+🎬 Khởi động CineVé...
+▶ Backend API: http://localhost:3001
+▶ Frontend: http://localhost:3000
+
+✅ Đang khởi động... đợi ~10 giây rồi mở http://localhost:3000
+   Log backend:  tail -f /tmp/cinema-backend.log
+   Log frontend: tail -f /tmp/cinema-frontend.log
+   Dừng hệ thống: bash stop.sh

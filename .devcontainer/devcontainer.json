@@ -1,0 +1,36 @@
+{
+  "name": "Cinema Star (Node 18 + MySQL 8)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "forwardPorts": [3000, 3001, 3306],
+  "portsAttributes": {
+    "3000": { "label": "Frontend Next.js", "onAutoForward": "openBrowser" },
+    "3001": { "label": "Backend NestJS API", "onAutoForward": "silent" },
+    "3306": { "label": "MySQL", "onAutoForward": "silent" }
+  },
+  // Sau khi TẠO container: khởi MySQL + tạo user/DB/schema + npm install + seed + build
+  "postCreateCommand": "sudo bash .devcontainer/setup-db.sh",
+  // Mỗi lần MỞ lại container: chỉ cần bật MySQL daemon
+  "postStartCommand": "sudo bash .devcontainer/start-mysql.sh || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-next",
+        "formulahendry.code-runner",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.exclude": { "**/dist": true, "**/.next": true }
+      }
+    }
+  },
+  "remoteUser": "node"
+}
